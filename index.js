@@ -71,7 +71,7 @@ async function run() {
     // delete data from notes collection
     app.delete("/notes/:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: ObjectId(id) };
+      const query = { _id: (id) };
       console.log(query);
       const result = await notesCollection.deleteOne(query);
       res.send(result);
