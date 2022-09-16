@@ -67,33 +67,11 @@ async function run() {
       const notes = await cursor.toArray();
       res.send(notes);
     });
-// GET SINGLE DATA----------------------------------------------->
-    // get single note
-    app.get("/notes/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: (id) };
-      const result = await notesCollection.findOne(query);
-      res.send(result);
-    });
-    // get single archive
-    app.get("/archives/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: (id) };
-      const result = await archivesCollection.findOne(query);
-      res.send(result);
-    });
-    // get single trash
-    app.get("/trash/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: (id) };
-      const result = await trashCollection.findOne(query);
-      res.send(result);
-    });
 // DELETE------------------------------------------------------->
     // delete data from notes collection
     app.delete("/notes/:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: (id) };
+      const query = { _id: ObjectId(id) };
       console.log(query);
       const result = await notesCollection.deleteOne(query);
       res.send(result);
