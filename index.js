@@ -43,35 +43,11 @@ async function run() {
       const result = await trashCollection.insertOne(addNote);
       res.send(result);
     });
-// GET-----------------------------------------------------------> 
-    // get notes
-    app.get("/notes", async (req, res) => {
-      const query = {};
-      const cursor = notesCollection.find(query);
-      const notes = await cursor.toArray();
-      res.send(notes);
-    });
-
-    // get archives
-    app.get("/archives", async (req, res) => {
-      const query = {};
-      const cursor = archivesCollection.find(query);
-      const notes = await cursor.toArray();
-      res.send(notes);
-    });
-
-    // get Trash
-    app.get("/trash", async (req, res) => {
-      const query = {};
-      const cursor = trashCollection.find(query);
-      const notes = await cursor.toArray();
-      res.send(notes);
-    });
 // DELETE------------------------------------------------------->
     // delete data from notes collection
     app.delete("/notes/:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: (id) };
+      const query = { _id: ObjectId(id) };
       console.log(query);
       const result = await notesCollection.deleteOne(query);
       res.send(result);
